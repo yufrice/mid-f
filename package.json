@@ -1,0 +1,38 @@
+{
+  "name": "mid-f",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "yuf",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "server": "node --harmony --experimental-modules server/app.mjs",
+    "build": "webpack",
+    "dev": "webpack-dev-server --port 3000"
+  },
+  "dependencies": {
+    "async": "^2.6.0",
+    "css-loader": "^0.28.9",
+    "dotenv": "^5.0.0",
+    "elm-webpack-loader": "^4.4.0",
+    "file-loader": "^1.1.6",
+    "koa": "^2.5.0",
+    "koa-json": "^2.0.2",
+    "koa-router": "^7.4.0",
+    "koa-static": "^4.0.2",
+    "node-fetch": "^2.0.0",
+    "psc-package": "^0.2.5",
+    "pulp": "^12.0.1",
+    "purescript": "^0.11.7",
+    "request": "^2.83.0",
+    "style-loader": "^0.20.2",
+    "then-request": "^5.0.0",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1"
+  },
+  "devDependencies": {
+    "elm-analyse": "^0.13.3",
+    "elm-format": "^0.6.1-alpha"
+  }
+}
