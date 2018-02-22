@@ -1,15 +1,30 @@
 module Update exposing (Msg(..), update)
+
 import Models exposing (Model)
-import Time exposing (Time)
+import User.Update
 
-type Msg = InitName String | Init | Increment Time
 
-update : Msg -> Model -> (Model, Cmd Msg)
+--import Time exposing (Time)
+
+
+type Msg
+    = None
+    | Init
+    | InitName User.Update.Msg
+
+
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-    Init ->
-        (model, Cmd.none)
-    InitName input ->
-        ({model | entry = input}, Cmd.none)
-    Increment time ->
-        ({model | time = model.time + 1.0}, Cmd.none)
+        None ->
+            ( model, Cmd.none )
+
+        Init ->
+            ( model, Cmd.none )
+
+        InitName subMsg ->
+            let
+                ( updateUser, userCmd ) =
+                    User.Update.update subMsg model.user
+            in
+            ( { model | user = updateUser }, Cmd.none )

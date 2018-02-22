@@ -1,47 +1,44 @@
 module View exposing (view)
 
-import Html exposing (..)
-import Html.Events exposing (onClick, onInput)
-import Html.Attributes exposing (value)
+import Bootstrap.Button as Button
 import Bootstrap.CDN as CDN
-import Bootstrap.Grid as Grid
-import Bootstrap.Grid.Col as Col
 import Bootstrap.Form.Input as Input
 import Bootstrap.Form.InputGroup as InputGroup
-import Bootstrap.Button as Button
-import Update exposing (..)
+import Bootstrap.Grid as Grid
+import Bootstrap.Grid.Col as Col
+import Html exposing (..)
+import Html.Attributes exposing (class, value)
+import Html.Events exposing (onClick, onInput)
 import Models exposing (Model)
 import Summoner.View exposing (summonerView)
+import Update exposing (..)
+import User.View exposing (inputView)
 
-timeView model = div [] [text (toString <| model.time)]
 
-inputView : Model -> Html Msg
-inputView model = 
-            div []
-            [ InputGroup.config
-                ( InputGroup.text 
-                    [ Input.placeholder "SummonerName"
-                    , Input.onInput InitName
-                    ]
-                )
-                |> InputGroup.successors
-                    [ InputGroup.button
-                        [ Button.secondary
-                        , Button.attrs [onClick <| Init]
-                        ]
-                        [ text "はい"] ]
-                |> InputGroup.view
-                , div [] [ text model.entry ]
-            ]
+--timeView model = div [] [text (toString <| model.time)]
+--, div [] [ text model.entry ]
+--, div [] [ text "test" ]
+
+
+initView model =
+    div
+        [ class "input-group" ]
+        [ Html.map InitName (inputView model.user)
+        , span [ class "input-group-btn" ]
+            [ Button.button [] [ text "" ] ]
+        ]
+
 
 view : Model -> Html Msg
 view model =
-   Grid.container []
-    [ CDN.stylesheet
-    , Grid.row []
-        [ Grid.col [ Col.md8 ]
-            [timeView model]
-        , Grid.col [ Col.md12]
-            [ inputView model ]
+    Grid.container []
+        [ CDN.stylesheet
+        , Grid.row []
+            [ Grid.col [ Col.md8 ]
+                [ text model.user.name ]
+            , Grid.col [ Col.md10 ]
+                [ initView
+                    model
+                ]
+            ]
         ]
-    ]

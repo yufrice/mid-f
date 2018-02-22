@@ -19,6 +19,8 @@ users
   .use(id.routes(), id.allowedMethods())
   .use(game.routes(), game.allowedMethods());
 
-users.get('/:id', (ctx,next) => {
-  ctx.body = 'users';
-});
+users.get('/:id', 
+  (async (ctx,next) => {
+    ctx.body = 'users';
+  })
+);
