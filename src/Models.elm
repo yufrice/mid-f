@@ -17,6 +17,7 @@ initUser =
     { name = ""
     , id = ""
     , rank = ""
+    , state = ""
     }
 
 

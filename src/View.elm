@@ -10,6 +10,7 @@ import Html exposing (..)
 import Html.Attributes exposing (class, value)
 import Html.Events exposing (onClick, onInput)
 import Models exposing (Model)
+import Msg exposing (..)
 import Summoner.View exposing (summonerView)
 import Update exposing (..)
 import User.View exposing (inputView)
@@ -23,9 +24,9 @@ import User.View exposing (inputView)
 initView model =
     div
         [ class "input-group" ]
-        [ Html.map InitName (inputView model.user)
+        [ Html.map UpdateName (inputView model.user)
         , span [ class "input-group-btn" ]
-            [ Button.button [] [ text "" ] ]
+            [ Button.button [ Button.outlineSuccess, Button.attrs [ class "ml-1" ], Button.onClick Init ] [ text "" ] ]
         ]
 
 
@@ -34,11 +35,13 @@ view model =
     Grid.container []
         [ CDN.stylesheet
         , Grid.row []
-            [ Grid.col [ Col.md8 ]
+            [ Grid.col []
+                [ initView model ]
+            , Grid.col []
                 [ text model.user.name ]
-            , Grid.col [ Col.md10 ]
-                [ initView
-                    model
-                ]
+            , Grid.col []
+                [ text model.user.rank ]
+            , Grid.col []
+                [ text model.user.state ]
             ]
         ]

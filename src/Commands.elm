@@ -1,11 +1,12 @@
-module Commands exposing (..)
+module Commands exposing (fetch)
 
 import Http
-import Json.Decode as Decode exposing (field)
+import Json.Decode as Decode
 import Models exposing (..)
-import Update exposing (..)
+import Msg exposing (..)
+import User.Commands exposing (..)
 
 
-fetchId : String -> Cmd Msg
-fetchId name =
-    Cmd.none
+fetch : Model -> Cmd Msg
+fetch model =
+    Cmd.map UpdateId <| fetchId model.user

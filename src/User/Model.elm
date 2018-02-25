@@ -5,4 +5,5 @@ type alias User =
     { name : String
     , id : String
     , rank : String
+    , state : String
     }

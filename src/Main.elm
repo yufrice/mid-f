@@ -2,6 +2,7 @@ module Main exposing (main)
 
 import Html exposing (program)
 import Models exposing (..)
+import Msg exposing (Msg(..))
 import Time exposing (Time, second)
 import Update exposing (..)
 import View exposing (..)
