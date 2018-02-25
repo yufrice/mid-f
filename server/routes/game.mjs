@@ -13,9 +13,20 @@ game.get('/', (ctx, next) => {
     ctx.body = 'game';
 });
 
-game.get('/:id',
+game.get('/:name',
     (async (ctx, next) => {
-        const url = URL.game + ctx.params.id;
+        const url = URL.id + ctx.params.name;
+        try {
+            const response = await fetch(url, options);
+            const json = await response.json();
+            ctx.id = json.id;
+            await next();
+        } catch(err) {
+            console.log(err);
+        }
+    })
+    ,(async (ctx) => {
+        const url = URL.game + ctx.id;
     try {
         const response = await fetch(url, options);
         console.log(response.status);

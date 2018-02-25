@@ -26,10 +26,10 @@ id.get('/:id',
                 await next();
             }else if(response.status == 403) {
                 ctx.status = 400;
-                ctx.body = { 'state' : 100 };
+                ctx.body = { state: 100 };
             }else if(response.status == 404){
                 ctx.status = 400;
-                ctx.body = { 'state' : 110 };
+                ctx.body = { state: 110 };
             }
         } catch (err) {
             console.log(err);
