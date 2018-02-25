@@ -32,7 +32,7 @@ game.get('/:name',
         console.log(response.status);
         if (response.status == 200) {
             const json = await response.json();
-            ctx.status = 400;
+            ctx.status = 200;
             ctx.summoners = [];
             for(let item of json.participants){
                 const rankUrl = URL.rank + item.summonerId;

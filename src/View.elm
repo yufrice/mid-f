@@ -2,17 +2,12 @@ module View exposing (view)
 
 import Bootstrap.Button as Button
 import Bootstrap.CDN as CDN
-import Bootstrap.Form.Input as Input
-import Bootstrap.Form.InputGroup as InputGroup
 import Bootstrap.Grid as Grid
-import Bootstrap.Grid.Col as Col
+import Game.View exposing (gameView)
 import Html exposing (..)
 import Html.Attributes exposing (class, value)
-import Html.Events exposing (onClick, onInput)
 import Models exposing (Model)
 import Msg exposing (..)
-import Summoner.View exposing (summonerView)
-import Update exposing (..)
 import User.View exposing (inputView)
 
 
@@ -39,6 +34,8 @@ view model =
                 [ initView model ]
             , Grid.col []
                 [ text model.user.name ]
+            , Grid.col []
+                [ Html.map (\_ -> None) (gameView model.game) ]
             , Grid.col []
                 [ text model.user.rank ]
             , Grid.col []

@@ -6,14 +6,14 @@ import Http
 import Json.Decode as Decode
 
 
-fetchGame : Game -> Cmd Msg
-fetchGame game =
-    Cmd.none
+fetchGame : String -> Cmd Msg
+fetchGame name =
+    Http.send Init <| Http.get (fetchUrl name) decodeJson
 
 
 decodeJson : Decode.Decoder String
 decodeJson =
-    Decode.at [ "time" ] Decode.string
+    Decode.at [ "state" ] Decode.string
 
 
 fetchUrl : String -> String
