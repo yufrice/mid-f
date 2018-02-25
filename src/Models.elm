@@ -15,7 +15,6 @@ type alias Model =
 initUser : User
 initUser =
     { name = ""
-    , id = ""
     , rank = ""
     , state = ""
     }

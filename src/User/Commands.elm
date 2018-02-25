@@ -1,4 +1,4 @@
-module User.Commands exposing (fetchId)
+module User.Commands exposing (fetchUser)
 
 import Http
 import Json.Decode as Decode
@@ -6,18 +6,14 @@ import User.Model exposing (..)
 import User.Update exposing (..)
 
 
-fetchId : User -> Cmd Msg
-fetchId user =
+fetchUser : User -> Cmd Msg
+fetchUser user =
     Http.send Fetch <| Http.get (fetchUrl user.name) decodeJson
 
 
 decodeJson : Decode.Decoder String
 decodeJson =
     Decode.at [ "rank" ] Decode.string
-
-
-
---decodeJson =
 
 
 fetchUrl : String -> String
