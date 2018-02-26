@@ -11,3 +11,4 @@ type Msg
     | UpdateId User.Update.Msg
     | UpdateGame Game.Update.Msg
     | UpdateName User.Update.Msg
+    | UpdateTime Game.Update.Msg

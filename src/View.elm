@@ -6,6 +6,7 @@ import Bootstrap.Grid as Grid
 import Game.View exposing (gameView)
 import Html exposing (..)
 import Html.Attributes exposing (class, value)
+import Html.Lazy exposing (lazy2)
 import Models exposing (Model)
 import Msg exposing (..)
 import User.View exposing (inputView)
@@ -27,13 +28,12 @@ initView model =
 
 view : Model -> Html Msg
 view model =
-    Grid.container []
+    lazy2 Grid.container
+        []
         [ CDN.stylesheet
         , Grid.row []
             [ Grid.col []
                 [ initView model ]
-            , Grid.col []
-                [ text model.user.name ]
             , Grid.col []
                 [ Html.map (\_ -> None) (gameView model.game) ]
             , Grid.col []

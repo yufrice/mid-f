@@ -3,6 +3,7 @@ module Main exposing (main)
 import Html exposing (program)
 import Models exposing (..)
 import Msg exposing (Msg(..))
+import Subscriptions exposing (..)
 import Time exposing (Time, second)
 import Update exposing (..)
 import View exposing (..)
@@ -11,11 +12,6 @@ import View exposing (..)
 init : ( Model, Cmd Msg )
 init =
     ( initModel, Cmd.none )
-
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.none
 
 
 

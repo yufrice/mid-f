@@ -39,3 +39,10 @@ update msg model =
                     User.Update.update subMsg model.user
             in
             ( { model | user = updateUser }, Cmd.none )
+
+        UpdateTime subMsg ->
+            let
+                ( updateGame, userCmd ) =
+                    Game.Update.update subMsg model.game
+            in
+            ( { model | game = updateGame }, Cmd.none )

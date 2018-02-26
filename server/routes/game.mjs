@@ -49,9 +49,11 @@ game.get('/:name',
                     champ: item.championId
                 });
             }
+            const nowTime = await new Date();
+            ctx.time = await nowTime.getTime() - json.gameStartTime;
             ctx.body = {
                 summoners: ctx.summoners,
-                time: json.gameStartTime,
+                time: ctx.time,
                 state: json.gameType
             };
         } else if (response.status == 403) {

@@ -7,7 +7,7 @@ import Time exposing (Time)
 type alias Game =
     { summoners : List Summoner
     , time : Time
-    , state : String
+    , state : Bool
     }
 
 
@@ -15,5 +15,5 @@ initGame : Game
 initGame =
     { summoners = []
     , time = 0
-    , state = ""
+    , state = False
     }
