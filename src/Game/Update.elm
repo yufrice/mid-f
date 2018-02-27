@@ -8,6 +8,9 @@ import Game.Msg exposing (Msg(..))
 update : Msg -> Game -> ( Game, Cmd Msg )
 update msg game =
     case msg of
+        None ->
+            ( game, Cmd.none )
+
         Init (Ok initGame) ->
             ( initGame, Cmd.none )
 

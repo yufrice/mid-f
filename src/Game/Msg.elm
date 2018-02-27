@@ -6,6 +6,7 @@ import Time exposing (Time, millisecond)
 
 
 type Msg
-    = Init (Result Http.Error Game)
+    = None
+    | Init (Result Http.Error Game)
     | Update (Result Http.Error Time)
     | Count Time

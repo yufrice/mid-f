@@ -6,13 +6,17 @@ import Date.Format exposing (format)
 import Game.Model exposing (Game)
 import Game.Msg exposing (Msg(..))
 import Html exposing (..)
+import Summoner.View exposing (summonerView)
 
 
 gameView : Game -> Html Msg
 gameView game =
     case game.state of
         True ->
-            timeView <| fromTime game.time
+            div []
+                [ timeView <| fromTime game.time
+                , Html.map (\_ -> None) <| summonerView game.summoners <| fromTime game.time
+                ]
 
         _ ->
             Alert.warning [ text "not gamed" ]
