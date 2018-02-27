@@ -16,7 +16,7 @@ id.get('/', (ctx, next) => {
 
 id.get('/:id', 
     (async (ctx, next) => {
-        const url = URL.id + ctx.params.id;
+        const url = URL.id + encodeURI(ctx.params.id);
         try {
             const response = await fetch(url, options);
             if(response.status == 200){

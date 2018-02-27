@@ -7,9 +7,6 @@ import Msg exposing (Msg(..))
 import User.Update
 
 
---import Time exposing (Time)
-
-
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of

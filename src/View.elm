@@ -9,14 +9,11 @@ import Html.Attributes exposing (class, value)
 import Html.Lazy exposing (lazy2)
 import Models exposing (Model)
 import Msg exposing (..)
+import User.Model exposing (User)
 import User.View exposing (inputView)
 
 
---timeView model = div [] [text (toString <| model.time)]
---, div [] [ text model.entry ]
---, div [] [ text "test" ]
-
-
+initView : { model | user : User } -> Html Msg
 initView model =
     div
         [ class "input-group" ]

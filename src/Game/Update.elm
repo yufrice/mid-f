@@ -1,13 +1,8 @@
 module Game.Update exposing (..)
 
+import Game.Commands exposing (..)
 import Game.Model exposing (..)
-import Http
-import Time exposing (Time, millisecond)
-
-
-type Msg
-    = Init (Result Http.Error Time)
-    | Count Time
+import Game.Msg exposing (Msg(..))
 
 
 update : Msg -> Game -> ( Game, Cmd Msg )

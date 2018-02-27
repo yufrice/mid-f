@@ -1,6 +1,6 @@
 module Msg exposing (Msg(..))
 
-import Game.Update
+import Game.Msg
 import Time exposing (Time)
 import User.Update
 
@@ -10,6 +10,6 @@ type Msg
     | Init
     | Update Time
     | UpdateId User.Update.Msg
-    | UpdateGame Game.Update.Msg
+    | UpdateGame Game.Msg.Msg
     | UpdateName User.Update.Msg
-    | UpdateTime Game.Update.Msg
+    | UpdateTime Game.Msg.Msg

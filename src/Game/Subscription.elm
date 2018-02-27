@@ -1,7 +1,7 @@
 module Game.Subscription exposing (newTime)
 
-import Game.Update exposing (Msg(..))
-import Time exposing (Time, second)
+import Game.Msg exposing (Msg(..))
+import Time exposing (Time, minute, second)
 
 
 newTime : Time -> Sub Msg

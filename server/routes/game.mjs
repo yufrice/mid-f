@@ -15,7 +15,7 @@ game.get('/', (ctx, next) => {
 
 game.get('/:name',
     (async (ctx, next) => {
-        const url = URL.id + ctx.params.name;
+        const url = URL.id + encodeURI(ctx.params.name);
         try {
             const response = await fetch(url, options);
             const json = await response.json();

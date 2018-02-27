@@ -10,5 +10,15 @@ subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
         [ Sub.map UpdateTime <| Game.Subscription.newTime model.game.time
-        , Time.every minute Update
+        , gameUpdate model
         ]
+
+
+gameUpdate : Model -> Sub Msg
+gameUpdate model =
+    case model.game.state of
+        True ->
+            Time.every minute Update
+
+        False ->
+            Sub.none

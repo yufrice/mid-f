@@ -4,7 +4,7 @@ import Bootstrap.Alert as Alert
 import Date exposing (Date, fromTime)
 import Date.Format exposing (format)
 import Game.Model exposing (Game)
-import Game.Update exposing (..)
+import Game.Msg exposing (Msg(..))
 import Html exposing (..)
 
 
