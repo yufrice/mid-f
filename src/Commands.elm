@@ -1,8 +1,6 @@
-module Commands exposing (fetch)
+module Commands exposing (fetch, updateFetch)
 
 import Game.Commands exposing (..)
-import Http
-import Json.Decode as Decode
 import Models exposing (..)
 import Msg exposing (..)
 import User.Commands exposing (..)
@@ -15,3 +13,8 @@ fetch model =
         [ Cmd.map UpdateId <| fetchUser model.user
         , Cmd.map UpdateGame <| fetchGame model.user.name
         ]
+
+
+updateFetch : Model -> Cmd Msg
+updateFetch model =
+    Cmd.map UpdateGame <| fetchGame model.user.name

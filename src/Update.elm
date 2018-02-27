@@ -19,6 +19,9 @@ update msg model =
         Init ->
             ( model, fetch model )
 
+        Update _ ->
+            ( model, updateFetch model )
+
         UpdateId subMsg ->
             let
                 ( updateUser, userCmd ) =

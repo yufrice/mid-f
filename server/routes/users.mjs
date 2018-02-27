@@ -4,7 +4,6 @@ import request from 'request';
 import fetch from 'node-fetch';
 import json from 'koa-json';
 import {id} from './id.mjs';
-import {game} from './game.mjs';
 import {options, URL} from './url.mjs';
 
 export const users = new Router({
@@ -16,5 +15,4 @@ users.get('/', (ctx,next) => {
 });
 
 users
-  .use(id.routes(), id.allowedMethods())
-  .use(game.routes(), game.allowedMethods());
+  .use(id.routes(), id.allowedMethods());

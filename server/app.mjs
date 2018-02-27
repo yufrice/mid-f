@@ -3,6 +3,7 @@ import Koa from 'koa';
 import Router from 'koa-router';
 import Static from 'koa-static';
 import {users} from './routes/users.mjs';
+import {game} from './routes/game.mjs';
 
 const router = new Router({
   prefix: '/api'
@@ -14,6 +15,7 @@ const champ = new Router({
 
 router
   .use(users.routes(), users.allowedMethods())
+  .use(game.routes(), game.allowedMethods())
   ;
 
 

@@ -49,11 +49,11 @@ game.get('/:name',
                     champ: item.championId
                 });
             }
-            const nowTime = await new Date();
-            ctx.time = await nowTime.getTime() - json.gameStartTime;
+            const gameStartTime = new Date(json.gameStartTime);
+            const nowTime = await Date.now();
             ctx.body = {
                 summoners: ctx.summoners,
-                time: ctx.time,
+                time: (nowTime - gameStartTime),
                 state: json.gameType
             };
         } else if (response.status == 403) {

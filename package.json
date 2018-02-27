@@ -6,9 +6,11 @@
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf dist",
-    "server": "yarn run build && node --harmony --experimental-modules server/app.mjs",
+    "server": "node --harmony --experimental-modules server/app.mjs",
     "build": "webpack",
-    "dev": "webpack-dev-server --port 3000"
+    "dev": "webpack-dev-server --port 3000",
+    "watch": "run-p watch:build server",
+    "watch:build": "webpack --watch"
   },
   "dependencies": {
     "async": "^2.6.0",

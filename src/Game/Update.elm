@@ -2,7 +2,7 @@ module Game.Update exposing (..)
 
 import Game.Model exposing (..)
 import Http
-import Time exposing (Time)
+import Time exposing (Time, millisecond)
 
 
 type Msg
@@ -20,4 +20,4 @@ update msg game =
             ( { game | state = False, time = 0 }, Cmd.none )
 
         Count newTime ->
-            ( { game | time = newTime }, Cmd.none )
+            ( { game | time = game.time + 1000 }, Cmd.none )

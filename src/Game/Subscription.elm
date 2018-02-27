@@ -1,6 +1,5 @@
 module Game.Subscription exposing (newTime)
 
-import Game.Model exposing (..)
 import Game.Update exposing (Msg(..))
 import Time exposing (Time, second)
 

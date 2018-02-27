@@ -19,4 +19,4 @@ decodeJson =
 
 fetchUrl : String -> String
 fetchUrl =
-    (++) "/api/users/game/"
+    (++) "/api/game/"

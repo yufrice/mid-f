@@ -4,7 +4,6 @@ import Html exposing (program)
 import Models exposing (..)
 import Msg exposing (Msg(..))
 import Subscriptions exposing (..)
-import Time exposing (Time, second)
 import Update exposing (..)
 import View exposing (..)
 
