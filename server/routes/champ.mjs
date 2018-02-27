@@ -5,7 +5,7 @@ import {options, URL} from './url.mjs';
 
 
 export const champ = (async () => {
-        console.log('init');
+        console.log('init champ data');
         const params = '?locale=en_US&dataById=false';
         const url = URL.champ + params;
         const responce = await fetch(url, options);

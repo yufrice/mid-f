@@ -15,7 +15,7 @@ gameView game =
         True ->
             div []
                 [ timeView <| fromTime game.time
-                , Html.map (\_ -> None) <| summonerView game.summoners <| fromTime game.time
+                , Html.map (\_ -> None) <| summonerView game.summoners game.time
                 ]
 
         _ ->

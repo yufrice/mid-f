@@ -1,10 +1,15 @@
 module Summoner.Model exposing (Summoner)
 
-import Champ.Model exposing (Champ)
+import Time exposing (Time)
 
 
 type alias Summoner =
     { name : String
     , rank : String
     , champ : String
+    , dSpell : String
+    , dTime : Time
+    , fSpell : String
+    , fTime : Time
+    , modit : Time
     }

@@ -5,7 +5,7 @@ import Game.Msg exposing (Msg(..))
 import Http
 import Json.Decode as Decode
 import Json.Decode.Pipeline exposing (hardcoded, required)
-import Summoner.Model exposing (Summoner)
+import Summoner.Commands exposing (decodeSummoner)
 
 
 fetchGame : String -> Cmd Msg
@@ -24,14 +24,6 @@ decodeGame =
         |> required "summoners" (Decode.list decodeSummoner)
         |> required "time" Decode.float
         |> hardcoded True
-
-
-decodeSummoner : Decode.Decoder Summoner
-decodeSummoner =
-    Decode.succeed Summoner
-        |> required "name" Decode.string
-        |> required "rank" Decode.string
-        |> required "champ" Decode.string
 
 
 decodeTime : Decode.Decoder Float

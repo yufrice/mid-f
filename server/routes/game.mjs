@@ -4,6 +4,7 @@ import request from 'request';
 import fetch from 'node-fetch';
 import json from 'koa-json';
 import {champ} from './champ.mjs';
+import {spell} from './spell.mjs';
 import {options, URL} from './url.mjs';
 
 export const game = new Router({
@@ -37,6 +38,7 @@ game.get('/:name',
             ctx.summoners = [];
 
             const champData = await champ;
+            const spellData = await spell;
             for(let item of json.participants){
                 const rankUrl = URL.rank + item.summonerId;
                 const rankRes = await fetch(rankUrl, options);
@@ -49,7 +51,12 @@ game.get('/:name',
                 ctx.summoners.unshift ({
                     name: item.summonerName,
                     rank: ctx.rank,
-                    champ: await champData['id'+item.championId]
+                    champ: await champData['id'+item.championId],
+                    dSpell: await spellData['id'+item.spell1Id]['name'],
+                    dTime: await spellData['id'+item.spell1Id]['cd'],
+                    fSpell: await spellData['id'+item.spell2Id]['name'],
+                    fTime: await spellData['id'+item.spell2Id]['cd'],
+                    modit: 0
                 });
             }
             const gameStartTime = new Date(json.gameStartTime);
@@ -57,7 +64,7 @@ game.get('/:name',
             ctx.body = {
                 summoners: ctx.summoners,
                 time: (nowTime - gameStartTime),
-                state: 'true'
+                state: true
             };
         } else if (response.status == 403) {
             ctx.status = 400;
