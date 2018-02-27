@@ -9,7 +9,5 @@ type Msg
     = None
     | Init
     | Update Time
-    | UpdateId User.Update.Msg
     | UpdateGame Game.Msg.Msg
-    | UpdateName User.Update.Msg
-    | UpdateTime Game.Msg.Msg
+    | UpdateUser User.Update.Msg

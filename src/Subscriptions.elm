@@ -9,7 +9,8 @@ import Time exposing (Time, minute)
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
-        [ Sub.map UpdateTime <| Game.Subscription.newTime model.game.time
+        [ Sub.map UpdateGame <|
+            Game.Subscription.newTime model.game.time
         , gameUpdate model
         ]
 

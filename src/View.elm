@@ -3,9 +3,7 @@ module View exposing (view)
 import Bootstrap.Button as Button
 import Bootstrap.CDN as CDN
 import Bootstrap.Grid as Grid
-import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Row as Row
-import Bootstrap.Navbar as Navbar
 import Game.View exposing (gameView)
 import Html exposing (..)
 import Html.Attributes exposing (class, href, value)
@@ -20,7 +18,7 @@ initView : { model | user : User } -> Html Msg
 initView model =
     div
         [ class "input-group" ]
-        [ Html.map UpdateName (inputView model.user)
+        [ Html.map UpdateUser (inputView model.user)
         , span [ class "input-group-btn" ]
             [ Button.button [ Button.outlineSuccess, Button.attrs [ class "ml-1" ], Button.onClick Init ] [ text "" ] ]
         ]

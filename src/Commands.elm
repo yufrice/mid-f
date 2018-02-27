@@ -9,7 +9,7 @@ import User.Commands exposing (..)
 fetch : Model -> Cmd Msg
 fetch model =
     Cmd.batch
-        [ Cmd.map UpdateId <| fetchUser model.user
+        [ Cmd.map UpdateUser <| fetchUser model.user
         , Cmd.map UpdateGame <| fetchGame model.user.name
         ]
 

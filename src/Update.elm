@@ -19,13 +19,6 @@ update msg model =
         Update _ ->
             ( model, updateFetch model )
 
-        UpdateId subMsg ->
-            let
-                ( updateUser, userCmd ) =
-                    User.Update.update subMsg model.user
-            in
-            ( { model | user = updateUser }, Cmd.none )
-
         UpdateGame subMsg ->
             let
                 ( updateGame, gameCmd ) =
@@ -33,16 +26,9 @@ update msg model =
             in
             ( { model | game = updateGame }, Cmd.none )
 
-        UpdateName subMsg ->
+        UpdateUser subMsg ->
             let
                 ( updateUser, userCmd ) =
                     User.Update.update subMsg model.user
             in
             ( { model | user = updateUser }, Cmd.none )
-
-        UpdateTime subMsg ->
-            let
-                ( updateGame, userCmd ) =
-                    Game.Update.update subMsg model.game
-            in
-            ( { model | game = updateGame }, Cmd.none )

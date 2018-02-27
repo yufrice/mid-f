@@ -13,10 +13,6 @@ init =
     ( initModel, Cmd.none )
 
 
-
---Time.every second Increment
-
-
 main : Program Never Model Msg
 main =
     program
