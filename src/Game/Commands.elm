@@ -4,39 +4,34 @@ import Game.Model exposing (Game)
 import Game.Msg exposing (Msg(..))
 import Http
 import Json.Decode as Decode
+import Json.Decode.Pipeline exposing (hardcoded, required)
 import Summoner.Model exposing (Summoner)
 
 
 fetchGame : String -> Cmd Msg
 fetchGame name =
-    Cmd.batch [ fetchTime name ]
+    Http.send Init <| Http.get (fetchUrl name) decodeGame
 
 
 fetchTime : String -> Cmd Msg
 fetchTime name =
-    Http.send Init <| Http.get (fetchUrl name) decodeTime
+    Http.send Update <| Http.get (fetchUrl name) decodeTime
 
 
 decodeGame : Decode.Decoder Game
 decodeGame =
-    Decode.map3 Game
-        (Decode.field "summoner" Decode.list)
-        (Decode.field
-            "time"
-            Decode.float
-        )
-        (Decode.field
-            "state"
-            Decode.bool
-        )
+    Decode.succeed Game
+        |> required "summoners" (Decode.list decodeSummoner)
+        |> required "time" Decode.float
+        |> hardcoded True
 
 
 decodeSummoner : Decode.Decoder Summoner
 decodeSummoner =
-    Decode.map3 Summoner
-        (Decode.field "name" Decode.string)
-        (Decode.field "rank" Decode.string)
-        (Decode.field "champ" Decode.string)
+    Decode.succeed Summoner
+        |> required "name" Decode.string
+        |> required "rank" Decode.string
+        |> required "champ" Decode.string
 
 
 decodeTime : Decode.Decoder Float

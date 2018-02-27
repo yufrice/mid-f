@@ -15,5 +15,6 @@ summonerRow summoner =
     tr []
         [ td [] [ text summoner.name ]
         , td [] [ text summoner.rank ]
+        , td [] [ text summoner.champ ]
         , td [] []
         ]

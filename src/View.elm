@@ -9,6 +9,7 @@ import Html.Attributes exposing (class, value)
 import Html.Lazy exposing (lazy2)
 import Models exposing (Model)
 import Msg exposing (..)
+import Summoner.View exposing (summonerView)
 import User.Model exposing (User)
 import User.View exposing (inputView)
 
@@ -37,5 +38,7 @@ view model =
                 [ text model.user.rank ]
             , Grid.col []
                 [ text model.user.state ]
+            , Grid.col []
+                [ summonerView model.game.summoners ]
             ]
         ]

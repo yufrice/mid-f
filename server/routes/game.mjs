@@ -57,7 +57,7 @@ game.get('/:name',
             ctx.body = {
                 summoners: ctx.summoners,
                 time: (nowTime - gameStartTime),
-                state: json.gameType
+                state: 'true'
             };
         } else if (response.status == 403) {
             ctx.status = 400;

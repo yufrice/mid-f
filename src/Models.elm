@@ -1,6 +1,5 @@
 module Models exposing (Model, initModel)
 
-import Champ.Model exposing (Champ)
 import Game.Model exposing (Game, initGame)
 import Summoner.Model exposing (Summoner)
 import User.Model exposing (User)
