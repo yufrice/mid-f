@@ -9,14 +9,10 @@ const router = new Router({
   prefix: '/api'
 });
 
-const champ = new Router({
-  prefix: 'champ'
-});
 
 router
   .use(users.routes(), users.allowedMethods())
-  .use(game.routes(), game.allowedMethods())
-  ;
+  .use(game.routes(), game.allowedMethods());
 
 
 

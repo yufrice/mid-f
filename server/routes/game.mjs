@@ -3,6 +3,7 @@ import Router from 'koa-router';
 import request from 'request';
 import fetch from 'node-fetch';
 import json from 'koa-json';
+import {champ} from './champ.mjs';
 import {options, URL} from './url.mjs';
 
 export const game = new Router({
@@ -34,6 +35,8 @@ game.get('/:name',
             const json = await response.json();
             ctx.status = 200;
             ctx.summoners = [];
+
+            const champData = await champ;
             for(let item of json.participants){
                 const rankUrl = URL.rank + item.summonerId;
                 const rankRes = await fetch(rankUrl, options);
@@ -46,7 +49,7 @@ game.get('/:name',
                 ctx.summoners.unshift ({
                     name: item.summonerName,
                     rank: ctx.rank,
-                    champ: item.championId
+                    champ: await champData['id'+item.championId]
                 });
             }
             const gameStartTime = new Date(json.gameStartTime);

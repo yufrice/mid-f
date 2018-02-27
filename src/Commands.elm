@@ -8,7 +8,6 @@ import User.Commands exposing (..)
 
 fetch : Model -> Cmd Msg
 fetch model =
-    --Cmd.map UpdateId <| fetchUser model.user
     Cmd.batch
         [ Cmd.map UpdateId <| fetchUser model.user
         , Cmd.map UpdateGame <| fetchGame model.user.name
@@ -17,4 +16,4 @@ fetch model =
 
 updateFetch : Model -> Cmd Msg
 updateFetch model =
-    Cmd.map UpdateGame <| fetchGame model.user.name
+    Cmd.map UpdateGame <| fetchTime model.user.name
