@@ -1,8 +1,6 @@
 'use strict';
 import Router from 'koa-router';
-import request from 'request';
 import fetch from 'node-fetch';
-import json from 'koa-json';
 import {options, URL} from './url.mjs';
 
 
@@ -10,7 +8,7 @@ export const id = new Router({
     prefix: '/id'
 });
 
-id.get('/', (ctx, next) => {
+id.get('/', (ctx) => {
     ctx.body = 'id';
 });
 
