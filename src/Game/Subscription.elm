@@ -1,9 +1,11 @@
 module Game.Subscription exposing (newTime)
 
+import Game.Model exposing (Game)
 import Game.Msg exposing (Msg(..))
-import Time exposing (Time, minute, second)
+import Summoner.Subscription exposing (newTime)
 
 
-newTime : Time -> Sub Msg
-newTime time =
-    Time.every second Count
+newTime : Game -> Sub Msg
+newTime game =
+    Sub.map Update <|
+        Summoner.Subscription.newTime game.context.time

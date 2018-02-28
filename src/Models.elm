@@ -1,7 +1,6 @@
 module Models exposing (Model, initModel)
 
 import Game.Model exposing (Game, initGame)
-import Summoner.Model exposing (Summoner)
 import User.Model exposing (User)
 
 
@@ -14,6 +13,7 @@ type alias Model =
 initUser : User
 initUser =
     { name = ""
+    , id = 0
     , rank = ""
     , state = ""
     }

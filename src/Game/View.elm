@@ -14,8 +14,8 @@ gameView game =
     case game.state of
         True ->
             div []
-                [ timeView <| fromTime game.time
-                , Html.map (\_ -> None) <| summonerView game.summoners game.time
+                [ timeView <| fromTime game.context.time
+                , Html.map (\_ -> None) <| summonerView game.summoners game.context
                 ]
 
         _ ->

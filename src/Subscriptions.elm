@@ -10,7 +10,7 @@ subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
         [ Sub.map UpdateGame <|
-            Game.Subscription.newTime model.game.time
+            Game.Subscription.newTime model.game
         , gameUpdate model
         ]
 

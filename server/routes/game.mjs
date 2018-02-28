@@ -3,6 +3,7 @@ import Router from 'koa-router';
 import fetch from 'node-fetch';
 import {champ} from './champ.mjs';
 import {spell} from './spell.mjs';
+import {patch} from './patchVersion.mjs';
 import {options, URL} from './url.mjs';
 
 export const game = new Router({
@@ -13,23 +14,16 @@ game.get('/', (ctx) => {
     ctx.body = 'game';
 });
 
-game.get('/:name',
-    (async (ctx, next) => {
-        const url = URL.id + encodeURI(ctx.params.name);
+game.get('/0', (ctx) => {
+    ctx.status = 400;
+    ctx.body = 'wait';
+});
+
+game.get('/:id',
+    (async (ctx) => {
+        const url = URL.game + ctx.params.id;
         try {
             const response = await fetch(url, options);
-            const json = await response.json();
-            ctx.id = json.id;
-            await next();
-        } catch(err) {
-            console.log(err);
-        }
-    })
-    ,(async (ctx) => {
-        const url = URL.game + ctx.id;
-        try {
-            const response = await fetch(url, options);
-            console.log(response.status);
             if (response.status == 200) {
                 const json = await response.json();
                 ctx.status = 200;
@@ -37,6 +31,7 @@ game.get('/:name',
 
                 const champData = await champ;
                 const spellData = await spell;
+                const cdnData = await patch;
                 for(let item of json.participants){
                     const rankUrl = URL.rank + item.summonerId;
                     const rankRes = await fetch(rankUrl, options);
@@ -62,6 +57,11 @@ game.get('/:name',
                 ctx.body = {
                     summoners: ctx.summoners,
                     time: (nowTime - gameStartTime),
+                    cdn: {
+                        uri: cdnData.cdn, 
+                        version: cdnData.version,
+                        time: (nowTime - gameStartTime)
+                    },
                     state: true
                 };
             } else if (response.status == 403) {

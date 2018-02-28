@@ -10,10 +10,10 @@ fetch : Model -> Cmd Msg
 fetch model =
     Cmd.batch
         [ Cmd.map UpdateUser <| fetchUser model.user
-        , Cmd.map UpdateGame <| fetchGame model.user.name
+        , Cmd.map UpdateGame <| fetchGame model.user.id
         ]
 
 
 updateFetch : Model -> Cmd Msg
 updateFetch model =
-    Cmd.map UpdateGame <| fetchTime model.user.name
+    Cmd.map UpdateGame <| updateTime model.user.id

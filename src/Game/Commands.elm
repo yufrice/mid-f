@@ -1,34 +1,29 @@
-module Game.Commands exposing (fetchGame, fetchTime)
+module Game.Commands exposing (fetchGame, updateTime)
 
 import Game.Model exposing (Game)
 import Game.Msg exposing (Msg(..))
 import Http
 import Json.Decode as Decode
 import Json.Decode.Pipeline exposing (hardcoded, required)
-import Summoner.Commands exposing (decodeSummoner)
+import Summoner.Commands exposing (..)
 
 
-fetchGame : String -> Cmd Msg
-fetchGame name =
-    Http.send Init <| Http.get (fetchUrl name) decodeGame
-
-
-fetchTime : String -> Cmd Msg
-fetchTime name =
-    Http.send Update <| Http.get (fetchUrl name) decodeTime
+fetchGame : Int -> Cmd Msg
+fetchGame id =
+    Http.send Init <| Http.get (fetchUrl <| toString id) decodeGame
 
 
 decodeGame : Decode.Decoder Game
 decodeGame =
     Decode.succeed Game
         |> required "summoners" (Decode.list decodeSummoner)
-        |> required "time" Decode.float
+        |> required "cdn" decodeContext
         |> hardcoded True
 
 
-decodeTime : Decode.Decoder Float
-decodeTime =
-    Decode.at [ "time" ] Decode.float
+updateTime : Int -> Cmd Msg
+updateTime id =
+    Cmd.map Update <| fetchTime id
 
 
 fetchUrl : String -> String

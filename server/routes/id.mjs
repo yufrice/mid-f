@@ -45,10 +45,10 @@ id.get('/:id',
                 ctx.rank = 'unRanked';
             }
             ctx.body = { 
-                state: 200,
                 name: ctx.user,
                 id: ctx.id,
-                rank: ctx.rank
+                rank: ctx.rank,
+                state: 200
             };
         } catch (err) {
             console.log(err);

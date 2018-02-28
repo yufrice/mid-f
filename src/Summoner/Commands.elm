@@ -1,8 +1,10 @@
-module Summoner.Commands exposing (decodeSummoner)
+module Summoner.Commands exposing (decodeContext, decodeSummoner, fetchTime)
 
+import Http
 import Json.Decode as Decode
-import Json.Decode.Pipeline exposing (hardcoded, required)
-import Summoner.Model exposing (Summoner)
+import Json.Decode.Pipeline exposing (required)
+import Summoner.Model exposing (Context, Summoner)
+import Summoner.Update exposing (..)
 
 
 decodeSummoner : Decode.Decoder Summoner
@@ -16,3 +18,26 @@ decodeSummoner =
         |> required "fSpell" Decode.string
         |> required "fTime" Decode.float
         |> required "modit" Decode.float
+
+
+decodeContext : Decode.Decoder Context
+decodeContext =
+    Decode.succeed Context
+        |> required "uri" Decode.string
+        |> required "version" Decode.string
+        |> required "time" Decode.float
+
+
+fetchTime : Int -> Cmd Msg
+fetchTime id =
+    Http.send Fetch <| Http.get (fetchUrl <| toString id) decodeTime
+
+
+decodeTime : Decode.Decoder Float
+decodeTime =
+    Decode.at [ "time" ] Decode.float
+
+
+fetchUrl : String -> String
+fetchUrl =
+    (++) "/api/game/"

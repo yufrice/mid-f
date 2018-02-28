@@ -6,7 +6,7 @@ import User.Model exposing (User)
 
 type Msg
     = Update String
-    | Fetch (Result Http.Error String)
+    | Fetch (Result Http.Error User)
 
 
 update : Msg -> User -> ( User, Cmd Msg )
@@ -15,8 +15,8 @@ update msg user =
         Update string ->
             ( { user | name = string }, Cmd.none )
 
-        Fetch (Ok string) ->
-            ( { user | state = "", rank = string }, Cmd.none )
+        Fetch (Ok newUser) ->
+            ( Debug.log "init" newUser, Cmd.none )
 
         Fetch (Err _) ->
-            ( { user | state = "UserNotFound", rank = "" }, Cmd.none )
+            ( { user | state = "UserNotFound", id = 0, rank = "" }, Cmd.none )

@@ -11,7 +11,7 @@ export const champ = (async () => {
     const json = await responce.json();
     const champData = {};
     for (let champ in json.data){
-        champData['id' + json.data[champ].id] = json.data[champ].name;
+        champData['id' + json.data[champ].id] = json.data[champ].key;
     }
     return champData;
 })();

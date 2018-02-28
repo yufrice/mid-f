@@ -17,3 +17,4 @@ URL.rank = RiotApi + '/league/v3/positions/by-summoner/';
 URL.game = RiotApi + '/spectator/v3/active-games/by-summoner/';
 URL.champ = SubRiotApi + '/static-data/v3/champions';
 URL.spell = SubRiotApi + '/static-data/v3/summoner-spells';
+URL.patch = SubRiotApi + '/static-data/v3/realms';

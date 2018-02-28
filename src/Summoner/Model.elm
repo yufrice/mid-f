@@ -1,4 +1,4 @@
-module Summoner.Model exposing (Summoner)
+module Summoner.Model exposing (Context, Summoner)
 
 import Time exposing (Time)
 
@@ -12,4 +12,11 @@ type alias Summoner =
     , fSpell : String
     , fTime : Time
     , modit : Time
+    }
+
+
+type alias Context =
+    { uri : String
+    , version : String
+    , time : Time
     }
