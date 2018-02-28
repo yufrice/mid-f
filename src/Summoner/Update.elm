@@ -17,7 +17,7 @@ update msg context =
             ( { context | time = newTime }, Cmd.none )
 
         Fetch (Err _) ->
-            ( { context | time = 0 }, Cmd.none )
+            ( { context | time = 0, state = False }, Cmd.none )
 
         Count newTime ->
             ( { context | time = context.time + 1000 }, Cmd.none )

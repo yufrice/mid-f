@@ -2,7 +2,7 @@ module Summoner.Commands exposing (decodeContext, decodeSummoner, fetchTime)
 
 import Http
 import Json.Decode as Decode
-import Json.Decode.Pipeline exposing (required)
+import Json.Decode.Pipeline exposing (hardcoded, required)
 import Summoner.Model exposing (Context, Summoner)
 import Summoner.Update exposing (..)
 
@@ -26,6 +26,7 @@ decodeContext =
         |> required "uri" Decode.string
         |> required "version" Decode.string
         |> required "time" Decode.float
+        |> hardcoded True
 
 
 fetchTime : Int -> Cmd Msg

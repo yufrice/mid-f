@@ -16,7 +16,7 @@ update msg user =
             ( { user | name = string }, Cmd.none )
 
         Fetch (Ok newUser) ->
-            ( Debug.log "init" newUser, Cmd.none )
+            ( newUser, Cmd.none )
 
         Fetch (Err _) ->
             ( { user | state = "UserNotFound", id = 0, rank = "" }, Cmd.none )

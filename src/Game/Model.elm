@@ -16,6 +16,7 @@ initContext =
     { uri = ""
     , version = ""
     , time = 0
+    , state = False
     }
 
 

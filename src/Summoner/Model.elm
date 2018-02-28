@@ -19,4 +19,5 @@ type alias Context =
     { uri : String
     , version : String
     , time : Time
+    , state : Bool
     }

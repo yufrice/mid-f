@@ -11,7 +11,8 @@ export const spell = (async () => {
     const spellData= {};
     for (let spell in json.data){
         spellData['id' + json.data[spell].id]
-                = { name: json.data[spell].name,
+                = { 
+                name: json.data[spell].key,
                 cd: json.data[spell].cooldown[0] * 1000
             };
     }

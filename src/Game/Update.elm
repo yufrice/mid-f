@@ -22,4 +22,4 @@ update msg game =
                 ( updateContext, contexCmd ) =
                     Summoner.Update.update subMsg game.context
             in
-            ( { game | context = updateContext }, Cmd.none )
+            ( { game | state = updateContext.state, context = updateContext }, Cmd.none )

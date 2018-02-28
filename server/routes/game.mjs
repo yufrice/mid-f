@@ -56,12 +56,12 @@ game.get('/:id',
                 const nowTime = await Date.now();
                 ctx.body = {
                     summoners: ctx.summoners,
-                    time: (nowTime - gameStartTime),
                     cdn: {
                         uri: cdnData.cdn, 
                         version: cdnData.version,
                         time: (nowTime - gameStartTime)
                     },
+                    time: (nowTime - gameStartTime),
                     state: true
                 };
             } else if (response.status == 403) {
